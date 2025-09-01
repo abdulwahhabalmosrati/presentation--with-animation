@@ -6,6 +6,8 @@ class PresentationController {
         this.isAnimating = false;
         this.autoPlayEnabled = false;
         this.autoPlayInterval = null;
+        this.navigationVisible = false;
+        this.navigationTimeout = null;
         
         this.init();
     }
@@ -23,13 +25,22 @@ class PresentationController {
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         
-        prevBtn.addEventListener('click', () => this.previousSlide());
-        nextBtn.addEventListener('click', () => this.nextSlide());
+        prevBtn.addEventListener('click', () => {
+            this.showNavigation();
+            this.previousSlide();
+        });
+        nextBtn.addEventListener('click', () => {
+            this.showNavigation();
+            this.nextSlide();
+        });
         
         // Dot navigation
         const dots = document.querySelectorAll('.dot');
         dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index + 1));
+            dot.addEventListener('click', () => {
+                this.showNavigation();
+                this.goToSlide(index + 1);
+            });
         });
         
         // Content item navigation (table of contents)
@@ -43,6 +54,9 @@ class PresentationController {
             });
         });
         
+        // Screen item click events for modal display
+        this.setupScreenItemModal();
+        
         // Add hover effects to interactive elements
         this.addHoverEffects();
     }
@@ -55,24 +69,29 @@ class PresentationController {
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     e.preventDefault();
+                    this.showNavigation();
                     this.nextSlide();
                     break;
                 case 'ArrowRight':
                 case 'ArrowDown':
                     e.preventDefault();
+                    this.showNavigation();
                     this.previousSlide();
                     break;
                 case 'Home':
                     e.preventDefault();
+                    this.showNavigation();
                     this.goToSlide(1);
                     break;
                 case 'End':
                     e.preventDefault();
+                    this.showNavigation();
                     this.goToSlide(this.totalSlides);
                     break;
                 case ' ':
                 case 'Enter':
                     e.preventDefault();
+                    this.showNavigation();
                     this.nextSlide();
                     break;
                 case 'Escape':
@@ -195,6 +214,123 @@ class PresentationController {
         
         prevBtn.style.opacity = this.currentSlide === 1 ? '0.5' : '1';
         nextBtn.style.opacity = this.currentSlide === this.totalSlides ? '0.5' : '1';
+    }
+    
+    showNavigation() {
+        const navigation = document.querySelector('.navigation');
+        navigation.classList.add('visible');
+        this.navigationVisible = true;
+        
+        // Clear existing timeout
+        if (this.navigationTimeout) {
+            clearTimeout(this.navigationTimeout);
+        }
+        
+        // Hide navigation after 3 seconds of inactivity
+        this.navigationTimeout = setTimeout(() => {
+            this.hideNavigation();
+        }, 3000);
+    }
+    
+    hideNavigation() {
+        const navigation = document.querySelector('.navigation');
+        navigation.classList.remove('visible');
+        this.navigationVisible = false;
+        
+        if (this.navigationTimeout) {
+            clearTimeout(this.navigationTimeout);
+            this.navigationTimeout = null;
+        }
+    }
+    
+    setupScreenItemModal() {
+        // Screen descriptions for each screen
+        const screenDescriptions = {
+            'home screen.jpg': {
+                title: 'الشاشة الرئيسية',
+                description: 'الشاشة الرئيسية لتطبيق Foresee حيث يمكن للمستخدمين مشاهدة آخر التوقعات والتحليلات، والوصول إلى جميع ميزات التطبيق بسهولة.'
+            },
+            'sign in screen.jpg': {
+                title: 'شاشة تسجيل الدخول',
+                description: 'شاشة تسجيل الدخول الآمنة التي تتيح للمستخدمين الوصول إلى حساباتهم الشخصية والاستفادة من جميع ميزات التطبيق.'
+            },
+            'sign up screen.jpg': {
+                title: 'شاشة إنشاء حساب',
+                description: 'شاشة التسجيل التي تمكن المستخدمين الجدد من إنشاء حساب في النظام والبدء في استخدام ميزات التنبؤ المتقدمة.'
+            },
+            'profile screen.jpg': {
+                title: 'شاشة الملف الشخصي',
+                description: 'الملف الشخصي للمستخدم حيث يمكن إدارة المعلومات الشخصية، ومشاهدة إحصائيات الاستخدام، وتخصيص إعدادات التطبيق.'
+            },
+            'analytics screen.jpg': {
+                title: 'شاشة التحليلات',
+                description: 'لوحة التحليلات المتقدمة التي تعرض التوقعات والإحصائيات التفصيلية حول مختلف المخاطر والأحداث المستقبلية.'
+            },
+            'Ai chat screen.jpg': {
+                title: 'شاشة الدردشة الذكية',
+                description: 'ميزة الدردشة التفاعلية مع الذكاء الاصطناعي للحصول على نصائح وتوضيحات حول التوقعات والتحليلات.'
+            },
+            'user to user chat screen.jpg': {
+                title: 'شاشة دردشة المستخدمين',
+                description: 'منصة التواصل بين المستخدمين لمشاركة الخبرات والمعلومات حول الأحداث والمخاطر في مناطقهم.'
+            }
+        };
+        
+        // Add click event listeners to screen items
+        const screenItems = document.querySelectorAll('.screen-item');
+        screenItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const imageSrc = img.src;
+                const imageAlt = img.alt;
+                const imageName = decodeURIComponent(imageSrc.split('/').pop());
+                
+                // Get description from our mapping
+                const screenInfo = screenDescriptions[imageName] || {
+                    title: imageAlt,
+                    description: 'وصف تفصيلي لهذه الشاشة من تطبيق Foresee.'
+                };
+                
+                this.openImageModal(imageSrc, screenInfo.title, screenInfo.description);
+            });
+        });
+        
+        // Setup modal close functionality
+        const modal = document.getElementById('imageModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalOverlay = modal.querySelector('.modal-overlay');
+        
+        modalClose.addEventListener('click', () => this.closeImageModal());
+        modalOverlay.addEventListener('click', () => this.closeImageModal());
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                e.preventDefault();
+                this.closeImageModal();
+            }
+        });
+    }
+    
+    openImageModal(imageSrc, title, description) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescriptionText = document.getElementById('modalDescriptionText');
+        
+        modalImage.src = imageSrc;
+        modalImage.alt = title;
+        modalTitle.textContent = title;
+        modalDescriptionText.textContent = description;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
     
     animateCurrentSlide() {
