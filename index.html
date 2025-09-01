@@ -1,1 +1,375 @@
-//presentation with animation
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORESEE - عرض تقديمي تفاعلي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-dots">
+                <span class="dot active" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+                <span class="dot" data-slide="4"></span>
+                <span class="dot" data-slide="5"></span>
+                <span class="dot" data-slide="6"></span>
+                <span class="dot" data-slide="7"></span>
+                <span class="dot" data-slide="8"></span>
+                <span class="dot" data-slide="9"></span>
+                <span class="dot" data-slide="10"></span>
+            </div>
+            <div class="nav-controls">
+                <button class="nav-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-right"></i></button>
+                <button class="nav-btn next-btn" id="nextBtn"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </nav>
+
+        <!-- Slide 1: Title Page -->
+        <section class="slide active" id="slide1">
+            <div class="slide-content title-slide">
+                <div class="logo-container animate-fade-in">
+                    <img src="logo.jpg" alt="FORESEE Logo" class="project-logo">
+                </div>
+                <h1 class="project-title animate-slide-up">FORESEE</h1>
+                <p class="project-subtitle animate-slide-up">نظام ذكي للتنبؤ بالأحداث المستقبلية</p>
+                
+                <div class="student-info animate-fade-in-delay">
+                    <div class="student">
+                        <h3>عبدالمهيمن حلمي</h3>
+                        <p>رقم القيد: 2191807579</p>
+                    </div>
+                    <div class="student">
+                        <h3>عبدالوهاب المصراتي</h3>
+                        <p>رقم القيد: 2191809941</p>
+                    </div>
+                </div>
+                
+                <div class="supervisor-info animate-fade-in-delay-2">
+                    <h4>إشراف: عبدالسلام نوري بريون</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Table of Contents -->
+        <section class="slide" id="slide2">
+            <div class="slide-content">
+                <h1 class="slide-title">قائمة المحتويات</h1>
+                <div class="content-list">
+                    <div class="content-item" data-target="3">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>الفكرة</span>
+                    </div>
+                    <div class="content-item" data-target="4">
+                        <i class="fas fa-bullseye"></i>
+                        <span>الهدف من التطبيق</span>
+                    </div>
+                    <div class="content-item" data-target="5">
+                        <i class="fas fa-tools"></i>
+                        <span>الأدوات والخدمات المستخدمة</span>
+                    </div>
+                    <div class="content-item" data-target="6">
+                        <i class="fas fa-search"></i>
+                        <span>الأنظمة المشابهة المدروسة</span>
+                    </div>
+                    <div class="content-item" data-target="7">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>النوافذ المكتملة</span>
+                    </div>
+                    <div class="content-item" data-target="8">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>الصعوبات والتحديات</span>
+                    </div>
+                    <div class="content-item" data-target="9">
+                        <i class="fas fa-rocket"></i>
+                        <span>التوصيات والتطوير المستقبلي</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Project Idea -->
+        <section class="slide" id="slide3">
+            <div class="slide-content">
+                <h1 class="slide-title">فكرة المشروع</h1>
+                <div class="idea-content">
+                    <div class="main-idea">
+                        <h2>نظام Foresee الذكي</h2>
+                        <p>تطبيق ذكي قادر على التنبؤ بالأحداث المستقبلية من خلال تحليل البيانات باستخدام تقنيات الذكاء الاصطناعي وخوارزميات تعلم الآلة.</p>
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-car"></i>
+                            <h3>التنبؤ بسرقة السيارات</h3>
+                            <p>تحليل الأنماط الجغرافية والسلوكية للتنبؤ بمخاطر السرقة</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-heartbeat"></i>
+                            <h3>تشخيص السكري</h3>
+                            <p>تحليل البيانات الصحية للتنبؤ باحتمالية الإصابة بمرض السكري</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>التفاعل المجتمعي</h3>
+                            <p>منشورات ومقاطع قصيرة لإثراء النظام ببيانات ميدانية</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>التحليل المتقدم</h3>
+                            <p>معالجة البيانات التاريخية لإنتاج تنبؤات موثوقة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Application Goals -->
+        <section class="slide" id="slide4">
+            <div class="slide-content">
+                <h1 class="slide-title">أهداف التطبيق</h1>
+                <div class="goals-container">
+                    <div class="goals-grid">
+                        <div class="goal-item">
+                            <span class="goal-number">1</span>
+                            <p>التنبؤ المبكر بالأحداث والحوادث المتنوعة باستخدام الذكاء الاصطناعي</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">2</span>
+                            <p>جمع وتحليل البيانات من مصادر متنوعة لتعزيز دقة التنبؤات</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">3</span>
+                            <p>تحسين سرعة الاستجابة واتخاذ القرار للجهات المختصة</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">4</span>
+                            <p>الحد من الخسائر البشرية والمادية عبر نظام الإنذار المبكر</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">5</span>
+                            <p>دعم اتخاذ القرارات الوقائية بناءً على بيانات واقعية محدثة</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">6</span>
+                            <p>إنشاء قاعدة بيانات شاملة لتطوير جودة التنبؤات</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">7</span>
+                            <p>تعزيز الوعي المجتمعي بالمخاطر المحتملة</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">8</span>
+                            <p>تقديم تقارير تنبؤية دقيقة وقابلة للتصدير</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">9</span>
+                            <p>التكامل مع مصادر بيانات خارجية متنوعة</p>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-number">10</span>
+                            <p>توظيف تقنيات التعلم المستمر لتحسين الأداء</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Tools Used -->
+        <section class="slide" id="slide5">
+            <div class="slide-content">
+                <h1 class="slide-title">الأدوات والتقنيات المستخدمة</h1>
+                <div class="tools-container">
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon typescript"></div>
+                            <h3>TypeScript</h3>
+                            <p>لغة برمجة قوية للتطوير الأمامي والخلفي</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon postgresql"></div>
+                            <h3>PostgreSQL</h3>
+                            <p>قاعدة بيانات متقدمة لتخزين وإدارة البيانات</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon prisma"></div>
+                            <h3>Prisma ORM</h3>
+                            <p>أداة حديثة لإدارة قواعد البيانات</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon nestjs"></div>
+                            <h3>NestJS</h3>
+                            <p>إطار عمل Node.js للخدمات الخلفية</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon graphql"></div>
+                            <h3>GraphQL</h3>
+                            <p>تقنية استعلام متقدمة للواجهات البرمجية</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon groq"></div>
+                            <h3>Groq AI</h3>
+                            <p>منصة ذكاء اصطناعي متقدمة للتنبؤات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Similar Systems -->
+        <section class="slide" id="slide6">
+            <div class="slide-content">
+                <h1 class="slide-title">الأنظمة المشابهة المدروسة</h1>
+                <div class="systems-container">
+                    <div class="systems-grid">
+                        <div class="system-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>MySugr</h3>
+                            <p>تطبيق لمراقبة وإدارة مرض السكري مع ميزات التتبع والتحليل</p>
+                        </div>
+                        <div class="system-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>DiabTrend</h3>
+                            <p>نظام تحليل اتجاهات السكري والتنبؤ بالمخاطر الصحية</p>
+                        </div>
+                        <div class="system-card">
+                            <i class="fas fa-brain"></i>
+                            <h3>Nostradamus AI</h3>
+                            <p>منصة ذكاء اصطناعي للتنبؤ بالأحداث المستقبلية</p>
+                        </div>
+                        <div class="system-card">
+                            <i class="fas fa-car"></i>
+                            <h3>Car Tracker Nigeria</h3>
+                            <p>نظام تتبع المركبات والوقاية من السرقة</p>
+                        </div>
+                    </div>
+                    <div class="comparison-note">
+                        <p>تم دراسة هذه الأنظمة لفهم أفضل الممارسات وتطوير حلول مبتكرة في نظام Foresee</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Completed Screens -->
+        <section class="slide" id="slide7">
+            <div class="slide-content">
+                <h1 class="slide-title">النوافذ المكتملة</h1>
+                <div class="screens-container">
+                    <div class="screens-grid">
+                        <div class="screen-item">
+                            <img src="home screen.jpg" alt="الشاشة الرئيسية">
+                            <h3>الشاشة الرئيسية</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="sign in screen.jpg" alt="شاشة تسجيل الدخول">
+                            <h3>تسجيل الدخول</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="sign up screen.jpg" alt="شاشة التسجيل">
+                            <h3>إنشاء حساب</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="profile screen.jpg" alt="شاشة الملف الشخصي">
+                            <h3>الملف الشخصي</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="analytics screen.jpg" alt="شاشة التحليلات">
+                            <h3>التحليلات</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="Ai chat screen.jpg" alt="شاشة الدردشة الذكية">
+                            <h3>الدردشة الذكية</h3>
+                        </div>
+                        <div class="screen-item">
+                            <img src="user to user chat screen.jpg" alt="الدردشة بين المستخدمين">
+                            <h3>دردشة المستخدمين</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Challenges -->
+        <section class="slide" id="slide8">
+            <div class="slide-content">
+                <h1 class="slide-title">الصعوبات والتحديات</h1>
+                <div class="challenges-container">
+                    <div class="challenge-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>تصميم واجهة المستخدم (UI/UX)</h3>
+                        <p>واجهتنا صعوبة في تصميم واجهة جذابة وبسيطة وسهلة الاستخدام، مع الحفاظ على الطابع العصري والمهني الذي يناسب تطبيق Foresee. تحقيق التوازن بين الجاذبية البصرية وسهولة الاستخدام تطلب الكثير من التجارب والتعديلات المتكررة.</p>
+                    </div>
+                    <div class="challenge-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>تعقيد الخدمات والتكامل</h3>
+                        <p>احتوى المشروع على العديد من الوظائف المتقدمة مثل نشر التوقعات في شكل منشورات وريلز، تقديم تحليلات مفصلة للمستخدمين، وإدارة تفاعلات الشبكة الاجتماعية. هذا أدى إلى صعوبة في تنسيق العمليات وضمان تكامل جميع الخدمات بسلاسة.</p>
+                    </div>
+                    <div class="challenge-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>التعامل مع الذكاء الاصطناعي</h3>
+                        <p>تكامل النظام مع نموذج الذكاء الاصطناعي لتقديم توقعات دقيقة وتحليلات متقدمة كان تحديًا تقنيًا كبيرًا، حيث تطلب ذلك فهمًا معمقًا للخوارزميات وضمان جودة البيانات ومدى دقتها في التوصيات.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Future Development -->
+        <section class="slide" id="slide9">
+            <div class="slide-content">
+                <h1 class="slide-title">التوصيات والتطوير المستقبلي</h1>
+                <div class="future-container">
+                    <div class="future-card">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>واجهة متكاملة للمسؤولين</h3>
+                        <p>تصميم واجهة إدارة شاملة تمكّن مسؤولي النظام من مراقبة ومتابعة جميع العمليات بشكل دقيق، مع توفير أدوات تساعد على اتخاذ قرارات مبنية على البيانات.</p>
+                    </div>
+                    <div class="future-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>موقع العرض الاحترافي</h3>
+                        <p>إنشاء موقع عرض احترافي يمثل النظام بطريقة مرئية جذابة، يعرض المزايا والخدمات الرئيسية ويتيح تجربة تفاعلية للمستخدمين والعملاء المحتملين.</p>
+                    </div>
+                    <div class="future-card">
+                        <i class="fas fa-language"></i>
+                        <h3>دعم متعدد اللغات</h3>
+                        <p>تطوير النظام ليعمل بعدة لغات، مما يتيح للمستخدمين من خلفيات لغوية متنوعة الوصول إلى خدماته بسهولة، ويعزز قابلية التوسع الإقليمي والدولي.</p>
+                    </div>
+                    <div class="future-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>تحسين دقة الذكاء الاصطناعي</h3>
+                        <p>تحسين خوارزميات الذكاء الاصطناعي لضمان تقديم توصيات وتحليلات دقيقة وذكية، مع القدرة على التعلم المستمر من البيانات الجديدة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Conclusion -->
+        <section class="slide" id="slide10">
+            <div class="slide-content conclusion-slide">
+                <div class="conclusion-content">
+                    <i class="fas fa-star conclusion-icon"></i>
+                    <h1>الختام</h1>
+                    <p class="thanks-text">الحمد لله رب العالمين</p>
+                    <p class="gratitude">نشكر الله تعالى على توفيقه وتيسيره لإنجاز هذا المشروع</p>
+                    
+                    <div class="qa-section">
+                        <h2>الأسئلة والاستفسارات</h2>
+                        <p>نرحب بجميع الأسئلة والملاحظات</p>
+                        <i class="fas fa-question-circle qa-icon"></i>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <p>شكراً لحسن الاستماع</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
